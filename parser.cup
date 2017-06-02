@@ -1,16 +1,13 @@
 import java_cup.runtime.*;
 
-terminal ERROR, PLUS, TIMES, LPAREN, RPAREN;
+terminal PLUS, TIMES, LPAREN, RPAREN;
 terminal Integer NUMBER;
 
-non terminal expr_list, expr_part;
 non terminal Integer expr, term, factor;
 
 precedence left PLUS;
 precedence left TIMES;
 
-expr_list ::= expr_list expr_part | expr_part ;
-expr_part ::= expr:e {: System.out.println(e); :} | error ;
 expr ::= expr:e PLUS term:t {: RESULT = new Integer(e.intValue() + t.intValue()); :} | term:t {: RESULT = t; :} ;
 term ::= term:t TIMES factor:f {: RESULT = new Integer(t.intValue() * f.intValue()); :} | factor:f {: RESULT = f; :} ;
 factor ::= LPAREN expr:e RPAREN {: RESULT = e; :} | NUMBER:n {: RESULT = n; :};

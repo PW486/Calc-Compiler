@@ -25,6 +25,4 @@ Number = [0-9]+
 ")" { return symbol(sym.RPAREN); }
 {Number} { return symbol(sym.NUMBER, new Integer(yytext())); }
 {WhiteSpace} { /* ignore */ }
-. { return symbol(sym.ERROR, yytext()); }
-
-<<EOF>>		{ return symbol( sym.EOF ); }
+. { return symbol(sym.error, yytext()); }
